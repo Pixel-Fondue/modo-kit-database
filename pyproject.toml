@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "data_tools"
+version = "0.1.0"
+description = "Core modo kit database for external tools to connect to."
+authors = ["Shawn Frueh <shawnfrueh@live.com>"]
+license = "LICENSE"
+readme = "README.md"
+package-mode = true
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
