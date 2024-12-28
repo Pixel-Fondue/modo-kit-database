@@ -1,0 +1,31 @@
+# Action to test the addition or change of a new kit
+name: Kit Database Test
+
+on:
+  # Triggers when a pull request is opened against the main branch
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  # Test job is used to test the addition or change of a new kit
+  test:
+    # We are just using python so lets use linux
+    runs-on: ubuntu-latest
+
+    steps:
+      # Get the repository code
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      # Setup Python and install toml
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # Run the build script to test the changes.
+      - name: Run Build Script
+        run: |
+          python -m tools.build
+          ls -l ./build
