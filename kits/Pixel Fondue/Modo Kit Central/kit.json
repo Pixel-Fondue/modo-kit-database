@@ -1,11 +1,12 @@
 {
   "label": "Modo Kit Central",
+  "name": "MODO_KIT_CENTRAL",
   "author": "Pixel Fondue",
   "version": "1.0",
   "source": "GitHub",
   "description": "Kit to help you find and install kits for Modo.",
   "installable": true,
-  "install-info": "https://github.com/Pixel-Fondue/modo-kit-central/releases/latest/download/modo_kit_central_0.1.9.lpk",
+  "manifest": "https://github.com/Pixel-Fondue/modo-kit-central/releases/latest/download/manifest.json",
   "url": "https://github.com/Pixel-Fondue/modo-kit-central",
   "help": "https://github.com/Pixel-Fondue/modo-kit-central",
   "search": ["modo", "kits", "install", "python", "search"]

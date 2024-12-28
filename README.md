@@ -51,7 +51,7 @@ Discord in the #modo-kit-central channel.
   // If the kit can be installed from MKC (Requires an accessible manifest and lpk file).
   "installable": true,
   // Path to the manifest.json file to check for updates and install the kit (if installable).
-  "manifest": "https://github.com/Pixel-Fondue/modo-kit-central/releases/latest/download/modo_kit_central_0.1.9.lpk",
+  "manifest": "https://github.com/Pixel-Fondue/modo-kit-central/releases/latest/download/manifest.json",
   // The URL of the source of the kit to send users to.
   // This is used to open the source in the browser.
   "url": "https://github.com/Pixel-Fondue/modo-kit-central",
