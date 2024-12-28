@@ -47,9 +47,12 @@ class MKCDatabase:
 
     def _init_database(self) -> None:
         """Initializes the mkc database for all kits and authors."""
-        # Delete the database if it exists.
         if Paths.DATABASE.exists():
+            # Delete the database if it exists.
             Paths.DATABASE.unlink()
+        else:
+            # Ensure the build directory exists or connect will fail.
+            Paths.BUILD.mkdir(exist_ok=True)
 
         # Connect to the database.
         self.connection = connect(Paths.DATABASE)
