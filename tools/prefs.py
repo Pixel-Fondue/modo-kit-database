@@ -27,6 +27,8 @@ class DataKeys:
     # Database keys
     kits = 'kits'
     authors = 'authors'
+    has_banner = 'has_banner'
+    banner_name = 'banner_name'
     # Generation keys
     vacuum = 'VACUUM'
     set_page_size = "PRAGMA page_size = 1024"

@@ -5,6 +5,7 @@
   "version": "1.0",
   "source": "GitHub",
   "description": "Kit to help you find and install kits for Modo.",
+  "has_banner": true,
   "installable": true,
   "manifest": "https://github.com/Pixel-Fondue/modo-kit-central/releases/latest/download/manifest.json",
   "url": "https://github.com/Pixel-Fondue/modo-kit-central",

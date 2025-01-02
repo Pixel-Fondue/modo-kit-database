@@ -1,4 +1,4 @@
 -- Desc: Insert a new kit into the database
 INSERT INTO kits (
-    name, label, author, version, description, url, help, installable, manifest, search
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    name, label, author, version, description, search, url, help, manifest, has_banner, installable
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);

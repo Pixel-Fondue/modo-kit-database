@@ -16,7 +16,28 @@ def get_kits() -> Generator[Path, None, None]:
         yield kit_file
 
 
-if __name__ == '__main__':
+def get_authors() -> Generator[Path, None, None]:
+    """Gathers all authors and builds the database.
+
+    Yields:
+        author_file: The path to the info.json file.
+    """
+    # Iterate over the authors directory for all author.json files.
+    for author_file in Paths.KITS_ROOT.rglob("info.json"):
+        yield author_file
+
+
+def build_database() -> None:
+    """Builds the database for all kits in `kits.json`."""
     with MKCDatabase() as mkc_db:
+        # Load all kits into the database.
         for kit_info in get_kits():
             mkc_db.load_kit(kit_info)
+        # Load all authors into the database.
+        for author_info in get_authors():
+            mkc_db.load_author(author_info)
+
+
+if __name__ == '__main__':
+    build_database()
+

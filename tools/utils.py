@@ -1,7 +1,9 @@
 import json
+from pathlib import Path
 from typing import Dict, List, Any
 
 from .prefs import Paths, QueryKey, QueryTypeMap
+from .prefs import DataKeys as DKeys
 
 
 def load_queries() -> Dict[str, str]:
@@ -11,6 +13,25 @@ def load_queries() -> Dict[str, str]:
         queries: A dictionary of query names and their contents.
     """
     return {query.stem: query.read_text() for query in Paths.QUERIES.glob("*.sql")}
+
+
+def kit_has_banner(kit_info: Path) -> int:
+    """Checks if a kit has a banner image.
+
+    Args:
+        kit_info: The path to the kits `kit.json` file.
+
+    Returns:
+        1 if the kit has a banner.png image, 0 otherwise.
+    """
+    # Get the potential banner path.
+    banner_path = kit_info.parent / DKeys.banner_name
+    # Create a key for the boolean value.
+    bool_key = QueryKey(name=DKeys.has_banner, type=bool)
+    # Format the value for the query. 1 if the banner exists, 0 otherwise.
+    formatted_value = format_value_for_query(banner_path.exists(), bool_key)
+
+    return formatted_value
 
 
 def format_value_for_query(value: Any, key: QueryKey) -> Any:
@@ -28,6 +49,9 @@ def format_value_for_query(value: Any, key: QueryKey) -> Any:
         return 1 if value else 0
     elif isinstance(value, list) and key.type == str:
         # SQLite cannot store arrays, save as JSON string.
+        return json.dumps(value)
+    elif isinstance(value, dict) and key.type == str:
+        # SQLite cannot store dictionaries, save as JSON string.
         return json.dumps(value)
     elif isinstance(value, key.type):
         # If the value is the correct type, return it.
@@ -48,7 +72,7 @@ def get_table_names(query: str) -> List[QueryKey]:
     names = []
     for line in query.splitlines():
         # Skip comments
-        if line.startswith("--"):
+        if line.strip().startswith("--"):
             continue
         # If there are spaces, the first word is the query name.
         elif line.startswith("  "):
