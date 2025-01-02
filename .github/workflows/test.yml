@@ -24,6 +24,12 @@ jobs:
         with:
           python-version: "3.10"
 
+      # Initialize the project
+      - name: Initialize Project
+        run: |
+          pip install poetry
+          poetry install
+
       # Run the build script to test the changes.
       - name: Run Build Script
         run: |
