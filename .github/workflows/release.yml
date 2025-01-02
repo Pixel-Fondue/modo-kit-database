@@ -28,10 +28,10 @@ jobs:
         - name: Initialize Project
           run: pip install toml==0.10.2
 
-        # Use toml to get the version of the kit and store it as an environment variable
-        - name: Get Kit Version
+        # Get the version of the database.
+        - name: Get Database Version
           run: |
-            echo "KIT_VERSION=$(python -c 'import toml; print(toml.load("pyproject.toml")["project"]["version"])')" >> $GITHUB_ENV
+            echo "KIT_VERSION=$(python -c 'from tools import utils; print(utils.get_version())')" >> $GITHUB_ENV
 
         # Create release tag.
         - name: Create Release
