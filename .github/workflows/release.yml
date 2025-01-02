@@ -56,6 +56,8 @@ jobs:
         - name: Upload Kit Database Asset
           id: upload-release-assets
           uses: actions/upload-release-asset@v1.0.2
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
             asset_path: ./build/mkc_kits.db
@@ -66,6 +68,8 @@ jobs:
         - name: Upload Database Manifest Asset
           id: upload-manifest-asset
           uses: actions/upload-release-asset@v1.0.2
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
             asset_path: ./build/manifest.json
