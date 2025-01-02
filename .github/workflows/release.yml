@@ -33,6 +33,12 @@ jobs:
           run: |
             echo "KIT_VERSION=$(python -c 'from tools import utils; print(utils.get_version())')" >> $GITHUB_ENV
 
+        # Generate the database and manifest file.
+        - name: Run Build Script
+          run: |
+            python -m tools.build
+            ls -l ./build
+
         # Create release tag.
         - name: Create Release
           id: create_release
