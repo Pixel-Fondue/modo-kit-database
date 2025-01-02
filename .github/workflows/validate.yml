@@ -8,8 +8,7 @@ on:
     - main
 
 jobs:
-  # Test job is used to test the addition or change of a new kit
-  test:
+  Validate:
     # We are just using python so lets use linux
     runs-on: ubuntu-latest
 
@@ -28,6 +27,11 @@ jobs:
       - name: Initialize Project
         run: |
           pip install toml==0.10.2
+
+      # Get the version of the database.
+      - name: Get Database Version
+        run: |
+          echo "KIT_VERSION=$(python -c 'from tools import utils; print(utils.get_version())')" >> $GITHUB_ENV
 
       # Run the build script to test the changes.
       - name: Run Build Script

@@ -9,7 +9,6 @@ on:
   workflow_dispatch:
 
 jobs:
-    # Release job is used to package the community hub kit and upload the lpk
     release:
       # We are just using python so lets use linux
       runs-on: ubuntu-latest
