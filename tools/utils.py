@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 from typing import Dict, List, Any
 
+import toml
+
 from .prefs import Paths, QueryKey, QueryTypeMap
 from .prefs import DataKeys as DKeys
 
@@ -126,3 +128,16 @@ def readable_size(size: int, decimal: int = 2) -> str:
         size /= 1024.0
 
     return f"{size:.{decimal}f} {unit}"
+
+
+def get_version() -> str:
+    """Gets the version number from the pyproject file.
+
+    Returns:
+        The version number from the pyproject file.
+    """
+    project = Path("pyproject.toml")
+    with project.open('r') as project_file:
+        project_data = toml.load(project_file)
+
+    return project_data.get('tool', {}).get('poetry', {}).get('version', "0.0.0")

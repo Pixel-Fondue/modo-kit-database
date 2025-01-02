@@ -1,6 +1,8 @@
+import json
 from pathlib import Path
 from typing import Generator
 
+from .utils import get_version
 from .prefs import Paths
 from .database import MKCDatabase
 
@@ -38,6 +40,19 @@ def build_database() -> None:
             mkc_db.load_author(author_info)
 
 
+def build_manifest() -> None:
+    """Builds the manifest.json file for the database file."""
+    # Get the version of the project.
+    version = get_version()
+    # Create the manifest dictionary.
+    manifest = {
+        "version": version,
+        "file": "mkc_kits.db"
+    }
+    # Write the manifest to the build directory.
+    Paths.MANIFEST.write_text(json.dumps(manifest, indent=2))
+
+
 if __name__ == '__main__':
     build_database()
-
+    build_manifest()
