@@ -27,8 +27,7 @@ jobs:
       # Initialize the project
       - name: Initialize Project
         run: |
-          pip install poetry
-          poetry install
+          pip install toml=0.10.2
 
       # Run the build script to test the changes.
       - name: Run Build Script
