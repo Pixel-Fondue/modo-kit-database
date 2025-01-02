@@ -1,5 +1,5 @@
 # Action to test the addition or change of a new kit
-name: Kit Database Test
+name: Kit Database Validation
 
 on:
   # Triggers when a pull request is opened against the main branch
@@ -34,3 +34,5 @@ jobs:
         run: |
           python -m tools.build
           ls -l ./build
+
+      # TODO: Run a test script to validate the database was generated correctly.
