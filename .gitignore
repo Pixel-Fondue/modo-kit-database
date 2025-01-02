@@ -1,0 +1,13 @@
+# IDE
+.idea/
+.vscode/
+
+# Build
+*.pyc
+build/
+.venv/
+*.egg*
+mkc_kits.db
+
+# Mac crap
+.DS_Store

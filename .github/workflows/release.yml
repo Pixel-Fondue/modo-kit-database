@@ -1,0 +1,67 @@
+# Action to generate the database and release it.
+name: Database Release
+
+on:
+  # Triggers the workflow when a branch is merged to main
+  push:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+    release:
+      # We are just using python so lets use linux
+      runs-on: ubuntu-latest
+
+      steps:
+        # Get the repository code
+        - name: Check out repository code
+          uses: actions/checkout@v4
+
+        # Setup Python and install toml
+        - name: Setup Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: "3.10"
+
+        # Initialize the project
+        - name: Initialize Project
+          run: pip install toml==0.10.2
+
+        # Get the version of the database.
+        - name: Get Database Version
+          run: |
+            echo "KIT_VERSION=$(python -c 'from tools import utils; print(utils.get_version())')" >> $GITHUB_ENV
+
+        # Create release tag.
+        - name: Create Release
+          id: create_release
+          uses: actions/create-release@v1.1.4
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            # Set tag values
+            tag_name: ${{ env.KIT_VERSION }}
+            release_name: Modo Kit Database ${{ env.KIT_VERSION }}
+            draft: false
+            prerelease: false
+
+        # Upload the kit database to the release tag.
+        - name: Upload Kit Database Asset
+          id: upload-release-assets
+          uses: actions/upload-release-asset@v1.0.2
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./build/mkc_kits.db
+            asset_name: mkc_kits.db
+            asset_content_type: application/octet-stream
+
+        # Upload the manifest file to the release tag.
+        - name: Upload Database Manifest Asset
+          id: upload-manifest-asset
+          uses: actions/upload-release-asset@v1.0.2
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./build/manifest.json
+            asset_name: manifest.json
+            asset_content_type: application/json
