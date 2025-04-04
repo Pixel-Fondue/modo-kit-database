@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS kits (
     -- The following fields are optional.
     url TEXT,                   -- The URL to the kit's homepage.
     help TEXT,                  -- The URL to the kit's help page.
-    manifest TEXT,              -- The manifest.json file for the kit installation.
+    repo TEXT,                  -- The GitHub repo for the kit installation.
     has_banner BOOLEAN,         -- Whether the kit has a banner.
     installable BOOLEAN         -- Whether the kit is installable via MKC.
 );

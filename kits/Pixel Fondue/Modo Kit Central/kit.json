@@ -7,7 +7,7 @@
   "description": "Kit to help you find and install kits for Modo.",
   "has_banner": true,
   "installable": true,
-  "manifest": "https://github.com/Pixel-Fondue/modo-kit-central/releases/latest/download/manifest.json",
+  "repo": "https://github.com/Pixel-Fondue/modo-kit-central",
   "url": "https://github.com/Pixel-Fondue/modo-kit-central",
   "help": "https://github.com/Pixel-Fondue/modo-kit-central",
   "search": ["modo", "kits", "install", "python", "search"]

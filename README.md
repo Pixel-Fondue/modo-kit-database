@@ -26,7 +26,7 @@ Discord in the #modo-kit-central channel.
 | `source`      | string   | Yes            | The hosting source of the kit. Gumroad, GitHub etc. |
 | `description` | string   | Yes            | The description of the kit.                         |
 | `installable` | bool     | No             | If the kit can be installed from MKC.               |
-| `manifest`    | string   | If installable | The url to the `manifest.json` file.                |
+| `repo`        | string   | If installable | The url to the github repo with releases.           |
 | `url`         | string   | Yes            | The url to the source of the kit.                   |
 | `help`        | string   | Yes            | The url to the help page for the kit.               |
 | `search`      | [string] | Yes            | Terms to search for the kit.                        |
